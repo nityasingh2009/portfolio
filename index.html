@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Nitya Singh | Digital Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #070b17;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Background */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: #7c3aed;
+      filter: blur(180px);
+      opacity: 0.25;
+      top: -150px;
+      left: -150px;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      background: #06b6d4;
+      filter: blur(180px);
+      opacity: 0.18;
+      bottom: -150px;
+      right: -100px;
+      z-index: -2;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(7, 11, 23, 0.65);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .logo span {
+      color: #8b5cf6;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #a78bfa;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 120px 10% 70px;
+      gap: 50px;
+    }
+
+    .hero-content {
+      max-width: 650px;
+      animation: slideLeft 1s ease forwards;
+    }
+
+    .hero-content small {
+      color: #a78bfa;
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(45px, 7vw, 80px);
+      line-height: 1.05;
+      margin: 15px 0;
+    }
+
+    .hero-content h1 span {
+      background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .typing {
+      font-size: 25px;
+      color: #cbd5e1;
+      min-height: 40px;
+    }
+
+    .hero-content p {
+      margin: 20px 0;
+      color: #94a3b8;
+      line-height: 1.8;
+      max-width: 570px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.4s;
+    }
+
+    .primary {
+      color: white;
+      background: linear-gradient(90deg, #7c3aed, #06b6d4);
+      box-shadow: 0 0 25px rgba(124,58,237,0.4);
+    }
+
+    .secondary {
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn:hover {
+      transform: translateY(-5px) scale(1.03);
+    }
+
+    /* Profile Circle */
+    .profile {
+      width: 330px;
+      height: 330px;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .profile::before {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: conic-gradient(#8b5cf6, #06b6d4, #ec4899, #8b5cf6);
+      animation: rotate 5s linear infinite;
+    }
+
+    .profile::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      background: #0b1020;
+    }
+
+    .profile-text {
+      position: relative;
+      z-index: 2;
+      font-size: 75px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c084fc, #22d3ee);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 10%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+    }
+
+    .section-title span {
+      color: #8b5cf6;
+    }
+
+    .section-title p {
+      color: #64748b;
+      margin-top: 10px;
+    }
+
+    /* About */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .glass {
+      padding: 35px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(15px);
+      transition: 0.4s;
+    }
+
+    .glass:hover {
+      transform: translateY(-8px);
+      border-color: rgba(139,92,246,0.5);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .glass p {
+      color: #94a3b8;
+      line-height: 1.8;
+    }
+
+    /* Skills */
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill {
+      text-align: center;
+      padding: 30px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: 0.4s;
+    }
+
+    .skill:hover {
+      transform: translateY(-10px) rotateX(5deg);
+      background: rgba(139,92,246,0.1);
+    }
+
+    .skill .icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .skill h3 {
+      margin-bottom: 10px;
+    }
+
+    .skill p {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* Projects */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .project {
+      min-height: 250px;
+      padding: 30px;
+      border-radius: 20px;
+      background: linear-gradient(
+        145deg,
+        rgba(139,92,246,0.12),
+        rgba(6,182,212,0.05)
+      );
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+      transition: 0.4s;
+    }
+
+    .project::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: #8b5cf6;
+      filter: blur(70px);
+      right: -40px;
+      top: -40px;
+      opacity: 0.4;
+    }
+
+    .project:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(124,58,237,0.15);
+    }
+
+    .project h3 {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .project p {
+      color: #94a3b8;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .project a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #a78bfa;
+      text-decoration: none;
+      position: relative;
+    }
+
+    /* Contact */
+    .contact-box {
+      max-width: 750px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .contact-box p {
+      color: #94a3b8;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      padding: 12px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: 0.3s;
+    }
+
+    .contact-links a:hover {
+      background: #7c3aed;
+      transform: translateY(-5px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #64748b;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* Scroll Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: 1s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Animations */
+    @keyframes slideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-70px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      nav {
+        padding: 18px 5%;
+      }
+
+      nav ul {
+        gap: 12px;
+      }
+
+      nav ul li a {
+        font-size: 12px;
+      }
+
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 140px;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .profile {
+        width: 250px;
+        height: 250px;
+      }
+
+      .profile-text {
+        font-size: 60px;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .skills,
+      .projects {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      nav ul {
+        display: none;
+      }
+
+      section {
+        padding: 80px 6%;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Nitya<span>.</span></div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+      <small>WELCOME TO MY PORTFOLIO</small>
+
+      <h1>
+        Hi, I'm <span>Nitya Singh</span>
+      </h1>
+
+      <div class="typing">
+        I'm a <span id="typingText"></span>
+      </div>
+
+      <p>
+        I create beautiful, modern and interactive digital experiences
+        using creativity, design and technology.
+      </p>
+
+      <div class="buttons">
+        <a href="#projects" class="btn primary">View My Work</a>
+        <a href="#contact" class="btn secondary">Let's Talk</a>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="profile-text">NS</div>
+    </div>
+
+  </section>
+
+  <!-- About -->
+  <section id="about">
+
+    <div class="section-title reveal">
+      <h2>About <span>Me</span></h2>
+      <p>A little introduction about me</p>
+    </div>
+
+    <div class="about">
+
+      <div class="glass reveal">
+        <h3>Who Am I?</h3>
+        <br>
+        <p>
+          I'm Nitya Singh, a passionate creative person interested in
+          web development, digital design and modern technology.
+          I love turning ideas into visually attractive and functional
+          digital experiences.
+        </p>
+      </div>
+
+      <div class="glass reveal">
+        <h3>My Vision</h3>
+        <br>
+        <p>
+          My goal is to build digital experiences that are simple,
+          beautiful, responsive and memorable. I continuously learn
+          new technologies and improve my creative skills.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+
+    <div class="section-title reveal">
+      <h2>My <span>Skills</span></h2>
+      <p>Technologies and creative skills</p>
+    </div>
+
+    <div class="skills">
+
+      <div class="skill reveal">
+        <div class="icon">💻</div>
+        <h3>HTML</h3>
+        <p>Creating clean and semantic web structures.</p>
+      </div>
+
+      <div class="skill reveal">
+        <div class="icon">🎨</div>
+        <h3>CSS</h3>
+        <p>Modern UI, animations, responsive layouts and effects.</p>
+      </div>
+
+      <div class="skill reveal">
+        <div class="icon">⚡</div>
+        <h3>JavaScript</h3>
+        <p>Interactive and dynamic web experiences.</p>
+      </div>
+
+      <div class="skill reveal">
+        <div class="icon">✨</div>
+        <h3>UI Design</h3>
+        <p>Creative and user-friendly interface design.</p>
+      </div>
+
+      <div class="skill reveal">
+        <div class="icon">📱</div>
+        <h3>Responsive Design</h3>
+        <p>Websites that work beautifully on all devices.</p>
+      </div>
+
+      <div class="skill reveal">
+        <div class="icon">🚀</div>
+        <h3>Creativity</h3>
+        <p>Turning simple ideas into unique digital experiences.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+
+    <div class="section-title reveal">
+      <h2>My <span>Projects</span></h2>
+      <p>Some of my creative work</p>
+    </div>
+
+    <div class="projects">
+
+      <div class="project reveal">
+        <h3>🌐 Portfolio Website</h3>
+        <p>
+          A modern personal portfolio with animations,
+          glassmorphism and responsive design.
+        </p>
+        <a href="#">View Project →</a>
+      </div>
+
+      <div class="project reveal">
+        <h3>🛍️ E-Commerce UI</h3>
+        <p>
+          A stylish shopping website interface designed
+          for a smooth user experience.
+        </p>
+        <a href="#">View Project →</a>
+      </div>
+
+      <div class="project reveal">
+        <h3>📱 Social Media App</h3>
+        <p>
+          A creative social platform concept with modern
+          cards, profiles and interactive elements.
+        </p>
+        <a href="#">View Project →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+
+    <div class="section-title reveal">
+      <h2>Let's <span>Connect</span></h2>
+      <p>Have an idea? Let's create something amazing.</p>
+    </div>
+
+    <div class="contact-box glass reveal">
+
+      <p>
+        I'm always open to new ideas, collaborations and
+        exciting projects.
+      </p>
+
+      <div class="contact-links">
+        <a href="mailto:nitya@example.com">📧 Email</a>
+        <a href="#">💼 LinkedIn</a>
+        <a href="#">🐙 GitHub</a>
+        <a href="#">📸 Instagram</a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 Nitya Singh. All Rights Reserved.
+  </footer>
+
+
+  <script>
+
+    /* Typing Effect */
+
+    const words = [
+      "Web Developer",
+      "UI Designer",
+      "Creative Coder",
+      "Digital Creator"
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    const typingText = document.getElementById("typingText");
+
+    function typeEffect() {
+
+      const currentWord = words[wordIndex];
+
+      if (!deleting) {
+        typingText.textContent =
+          currentWord.substring(0, charIndex + 1);
+
+        charIndex++;
+
+        if (charIndex === currentWord.length) {
+          deleting = true;
+
+          setTimeout(typeEffect, 1500);
+          return;
+        }
+
+      } else {
+
+        typingText.textContent =
+          currentWord.substring(0, charIndex - 1);
+
+        charIndex--;
+
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      }
+
+      setTimeout(typeEffect, deleting ? 60 : 100);
+    }
+
+    typeEffect();
+
+
+    /* Scroll Reveal */
+
+    const reveals = document.querySelectorAll(".reveal");
+
+    function revealOnScroll() {
+
+      reveals.forEach((element) => {
+
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 100) {
+          element.classList.add("active");
+        }
+
+      });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+
+    revealOnScroll();
+
+
+    /* Mouse Glow Effect */
+
+    document.addEventListener("mousemove", (e) => {
+
+      const x = e.clientX;
+      const y = e.clientY;
+
+      document.body.style.background =
+        `radial-gradient(circle at ${x}px ${y}px,
+        rgba(124,58,237,0.08),
+        #070b17 450px)`;
+
+    });
+
+  </script>
+
+</body>
+</html>
