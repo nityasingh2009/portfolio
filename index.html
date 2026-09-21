@@ -194,23 +194,26 @@
     }
 
     .profile::after {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border-radius: 50%;
-      background: #0b1020;
-    }
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: #0b1020;
+  z-index: 1;
+  }
 
-    .profile-text {
-      position: relative;
-      z-index: 2;
-      font-size: 75px;
-      font-weight: 800;
-      background: linear-gradient(135deg, #c084fc, #22d3ee);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
+    .profile-image {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  width: calc(100% - 18px);
+  height: calc(100% - 18px);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 2;
+  border: none;
+  }
     /* Sections */
     section {
       padding: 100px 10%;
@@ -537,11 +540,17 @@
       <div class="buttons">
         <a href="#projects" class="btn primary">View My Work</a>
         <a href="#contact" class="btn secondary">Let's Talk</a>
+
+        <a href="resume.pdf" class="btn secondary" target="_blank">
+        View Resume
+        </a>
       </div>
     </div>
 
     <div class="profile">
-      <div class="profile-text">NS</div>
+  <img src="portfolio image.jfif"
+       alt="Nitya Singh Profile Photo"
+       class="profile-image">
     </div>
 
   </section>
